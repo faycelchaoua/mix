@@ -21,7 +21,7 @@ class VinylMix
     private ?string $description = null;
 
     #[ORM\Column]
-    private ?int $trackCount = null;
+    private ?int $trackCount = null; 
 
     #[ORM\Column(length: 255)]
     private ?string $genre = null;
