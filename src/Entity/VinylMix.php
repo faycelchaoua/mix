@@ -21,7 +21,7 @@ class VinylMix
     private ?string $description = null;
 
     #[ORM\Column]
-    private ?int $trackCount = null; 
+    private ?int $trackCount = null;
 
     #[ORM\Column(length: 255)]
     private ?string $genre = null;
@@ -112,5 +112,20 @@ class VinylMix
         $this->votes = $votes;
 
         return $this;
+    }
+
+    public function getVotesString(): string
+    {
+        $prefix = ($this->votes === 0) ? '' : (($this->votes >= 0) ? '+' : '-');
+        return sprintf('%s %d', $prefix, abs($this->votes));
+    }
+
+    public function getImageUrl(int $width): string
+    {
+        return sprintf(
+            'https://picsum.photos/id/%d/%d',
+            ($this->getId() + 50) % 1000, // number between 0 and 1000, based on the id
+            $width
+        );
     }
 }
